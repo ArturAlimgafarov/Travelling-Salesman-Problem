@@ -13,17 +13,17 @@ def simAnnealing(nodes):
     coolingRate = 0.999
     eps = 1e-5
     temperature = 100
-
     path = list(range(len(nodes)))
     shuffle(path)
     path.append(path[0])
     while temperature >= eps:
         for _ in range(iterCount):
-            mdf = path.copy()
+            mdf = path[:-1]
             modify(mdf)
             diff = getLength(mdf) - getLength(path)
             if (diff <= 0) or (diff > 0 and exp(-diff / temperature) >= random()):
                 path = mdf
         temperature *= coolingRate
+        print(path, getLength(path))
 
     return path, getLength(path)

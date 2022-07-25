@@ -1,11 +1,8 @@
-import random
+import numpy as np
+from simulated_annealing import simAnnealing
 
-l = [random.randint(0, 100) for _ in range(10)]
-print(l)
+nodes = np.loadtxt('data_10.txt')
+nodes = [n[1:] for n in nodes]
+print(nodes)
 
-def f(a):
-    i, j = random.randint(0, 10), random.randint(0, 10)
-    a[i], a[j] = a[j], a[i]
-
-f(l)
-print(l)
+print(simAnnealing(nodes))
